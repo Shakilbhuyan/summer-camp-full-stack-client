@@ -8,6 +8,7 @@ const NavBer = () => {
                     <li><Link t="/">Instructors</Link></li>
                     <li><Link t="/">Classes</Link></li>
                     <li><Link t="/">Dashboard</Link></li>
+                    <li><button className='btn btn-outline btn-secondary'><Link to="/login">Login</Link></button></li>
   </>
   return (
     <div className="navbar  z-10 bg-opacity-30 max-w-screen-xl bg-blue-400 text-black">
@@ -26,9 +27,6 @@ const NavBer = () => {
         <ul className="menu menu-horizontal px-1">
           {listOptions}
         </ul>
-      </div>
-      <div className="navbar-end">
-        <a className="btn">Button</a>
       </div>
     </div>
   );
