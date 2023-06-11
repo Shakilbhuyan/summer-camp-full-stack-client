@@ -1,14 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/12logo.jpg'
+import { useContext } from 'react';
+import { AuthContext } from '../../../Providers/AuthProvider';
 
 const NavBer = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut()
+        .then()
+}
+
   const listOptions = <>
-                    <li><Link t="/">Home</Link></li>
-                    <li><Link t="/">Instructors</Link></li>
-                    <li><Link t="/">Classes</Link></li>
-                    <li><Link t="/">Dashboard</Link></li>
-                    <li><button className='btn btn-outline btn-secondary'><Link to="/login">Login</Link></button></li>
+    <li><Link t="/">Home</Link></li>
+    <li><Link t="/">Instructors</Link></li>
+    <li><Link t="/">Classes</Link></li>
+    {
+      user ? <div className='flex items-center gap-2'>
+          <li><Link t="/">Dashboard</Link></li>
+        <img className='h-[40px] w-[40px] rounded-[20px] ' src={user?.photoURL} alt="" />
+        <button onClick={handleLogOut} className="btn btn-error">LogOut</button>
+      </div> : <><li><Link to="/login">Login</Link></li></>
+    }
   </>
   return (
     <div className="navbar  z-10 bg-opacity-30 max-w-screen-xl bg-blue-400 text-black">
