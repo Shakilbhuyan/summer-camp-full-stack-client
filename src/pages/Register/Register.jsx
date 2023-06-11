@@ -1,12 +1,55 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
+import { useContext } from 'react';
+import { AuthContext } from '../../Providers/AuthProvider';
+import Swal from 'sweetalert2';
+import { useState } from 'react';
 
 const Register = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const {createUser, updateUserProfile} = useContext(AuthContext);
+    const [error, setError] = useState('')
+    const navigate = useNavigate();
+  
     const onSubmit = data => {
-        console.log(data)
-    };
+        if(data.password === data.confirmPassword){
+            setError('Password not Match')
+            return ;
+        }
+        createUser(data.email, data.password)
+        .then(result =>{
+          const loggedUser = result.user;
+          updateUserProfile(data.name, data.photoURL)
+          .then(()=>{
+                     const savedUser = {name: data.name, email : data.email, image: data.photoURL};
+                      fetch('http://localhost:5000/users', {
+                        method: 'POST',
+                        headers:{
+                          'content-type' : 'application/json'
+                        },
+                        body : JSON.stringify(savedUser)
+                      })
+                      .then(res => res.json())
+                      .then(data =>{
+                        if(data.insertedId){
+                          reset();
+                  Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Profile Updated',
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                  navigate('/')
+                        }
+                      })
+    
+                  
+          })
+          .catch(error => console.log(error))
+        })
+      };
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content w-1/2 flex-col ">
@@ -55,6 +98,7 @@ const Register = () => {
                             <input className="btn btn-primary" type="submit" value="Sign Up" />
                         </div>
                     </form>
+                    {error && <p className='text-red-500'>{error}</p>}
                     <span className='ml-4 mb-4'>Already Registered? <Link to="/login">Login</Link>
                     </span>
                 </div>

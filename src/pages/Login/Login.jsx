@@ -1,10 +1,13 @@
 import React from 'react';
+import { useState } from 'react';
 import { FaEye } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
+    const [seePass, setSepass] = useState("password")
     const handleShowPass = (event) => {
         event.preventDefault();
+        setSepass('text')
     }
     return (
         <div className="hero min-h-screen bg-base-200">
@@ -24,7 +27,7 @@ const Login = () => {
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="text" placeholder="password" className="input input-bordered focus:outline-none " />
+                            <input type={seePass} placeholder="password" className="input input-bordered focus:outline-none " />
                             <div className="text-end text-2xl">
                               <button onClick={handleShowPass}><FaEye></FaEye></button>
                             </div>
