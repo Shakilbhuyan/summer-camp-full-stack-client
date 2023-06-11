@@ -5,6 +5,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
 import { useState } from 'react';
+import SocialLogin from '../shared/SocailLogin/SocialLogin';
 
 const Register = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -13,7 +14,7 @@ const Register = () => {
     const navigate = useNavigate();
   
     const onSubmit = data => {
-        if(data.password === data.confirmPassword){
+        if(data.password !== data.confirmPassword){
             setError('Password not Match')
             return ;
         }
@@ -82,7 +83,7 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="text" {...register("password", { required: true, minLength: 6, maxLength: 20, pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/ })} placeholder="password" className="input input-bordered" />
+                            <input type="password" {...register("password", { required: true, minLength: 6, maxLength: 20, pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/ })} placeholder="password" className="input input-bordered" />
                             {errors.password?.type === "required" && <span className='text-red-600'>Please input Password</span>}
                             {errors.password?.type === "minLength" && <span className='text-red-600'>Password Must Be 6 Character</span>}
                             {errors.password?.type === "maxLength" && <span className='text-red-600'>Password Must Under 20 Character</span>}
@@ -101,6 +102,7 @@ const Register = () => {
                     {error && <p className='text-red-500'>{error}</p>}
                     <span className='ml-4 mb-4'>Already Registered? <Link to="/login">Login</Link>
                     </span>
+                    <SocialLogin></SocialLogin>
                 </div>
             </div>
         </div>
