@@ -3,6 +3,7 @@ import { useClasses } from '../../hooks/useClasses';
 import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useCart } from '../../hooks/useCart';
 
 
 const AllClasses = () => {
@@ -10,6 +11,7 @@ const AllClasses = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
+  const [ ,refetch] = useCart();
 
   const handleAddToCart = (item) => {
     const cartItem = { cartId: item._id, name: item.language, price: item.price, img: item.image, email: user?.email }
@@ -24,7 +26,7 @@ const AllClasses = () => {
         .then(res => res.json())
         .then(data => {
           if (data.insertedId) {
-            refetch();      // refetch cart for update thge number of cart
+            refetch();      // refetch cart for update the number of cart
             Swal.fire({
               position: 'top',
               icon: 'success',
