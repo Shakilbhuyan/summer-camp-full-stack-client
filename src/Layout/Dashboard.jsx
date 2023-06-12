@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link,  Outlet } from 'react-router-dom';
-import { useCart } from '../hooks/useCart';
+import useAdmin from '../hooks/useAdmin';
 
 const Dashboard = () => {
-    const [cart] = useCart();
+   
+    const [isAdmin] = useAdmin();
 
     return (
         <div className="drawer lg:drawer-open">
@@ -17,7 +18,9 @@ const Dashboard = () => {
         <div className="drawer-side ">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
           <ul className="menu p-4 w-80 h-full bg-blue-400 text-black">
-             <li><Link to="/dashboard/manageuser">Manage User</Link></li>
+
+             {isAdmin && <li><Link to="/dashboard/manageuser">Manage User</Link></li>}
+
           <div className="divider"></div>
              <li><Link to="/">Home</Link></li>
              <li><Link to="/allclasses">All Classes</Link></li>
