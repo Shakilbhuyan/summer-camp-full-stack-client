@@ -3,7 +3,7 @@ import { useClasses } from '../../../hooks/useClasses';
 
 const PopularInstructors = () => {
     const [allclasses] = useClasses();
-    const popularClass = allclasses.filter(item => item.seatsAvailable <= +10);
+    const popularClass = allclasses.filter(item => item.seatsAvailable < +10);
     const sixClass = popularClass.slice(0, 6)
     return (
         <div>
