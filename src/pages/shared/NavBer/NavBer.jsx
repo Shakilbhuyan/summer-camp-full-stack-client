@@ -12,9 +12,9 @@ const NavBer = () => {
 }
 
   const listOptions = <>
-    <li><Link t="/">Home</Link></li>
-    <li><Link t="/">Instructors</Link></li>
-    <li><Link t="/">Classes</Link></li>
+    <li><Link to="/">Home</Link></li>
+    <li><Link to="/">Instructors</Link></li>
+    <li><Link to="/allclasses">Classes</Link></li>
     {
       user ? <div className='flex items-center gap-2'>
           <li><Link t="/">Dashboard</Link></li>
