@@ -36,7 +36,7 @@ const MyCart = () => {
                             <td>
                                 <div className="avatar">
                                     <div className="mask mask-squircle w-12 h-12">
-                                        <img src={item.image} />
+                                        <img src={item.img} />
                                     </div>
                                 </div>
                             </td>

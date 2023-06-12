@@ -5,10 +5,14 @@ import { useContext } from 'react';
 import { AuthContext } from '../../../Providers/AuthProvider';
 import {FaShoppingCart } from 'react-icons/fa';
 import { useCart } from '../../../hooks/useCart';
+import useAdmin from '../../../hooks/useAdmin';
+import useInstructor from '../../../hooks/useInstructor';
 
 const NavBer = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [isAdmin] = useAdmin();
   const [cart] = useCart();
+  const [isInstructor] = useInstructor();
   const handleLogOut = () => {
     logOut()
         .then()
@@ -27,8 +31,11 @@ const NavBer = () => {
         </li>
 
     {
-      user ? <div className='flex items-center gap-2'>
-          <li><Link t="/">Dashboard</Link></li>
+      user  ? <div className='flex items-center gap-2'>
+        {isInstructor ||  <li><Link to={isAdmin ? "/dashboard/manageuser" : "/dashboard/mycart"}>Dashboard</Link></li>}
+          {
+            isInstructor && <li><Link to="/dashboard/addclass">Add Class</Link></li>
+          }
         <img className='h-[40px] w-[40px] rounded-[20px] ' src={user?.photoURL} alt="" />
         <button onClick={handleLogOut} className="btn btn-error">LogOut</button>
       </div> : <><li><Link to="/login">Login</Link></li></>
