@@ -6,6 +6,9 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import AllClasses from "../pages/AllClasses/AllClasses";
 import AllInstructors from "../pages/AllInstructors/AllInstructors";
+import Dashboard from "../Layout/Dashboard";
+import PrivateRoute from "./PrivateRoute";
+import MyCart from "../pages/Dashboard/StudentsDashboard/myCart";
 
 export const router = createBrowserRouter([
     {
@@ -31,6 +34,16 @@ export const router = createBrowserRouter([
         {
           path:"/allinstructors",
           element:<AllInstructors></AllInstructors>
+        }
+      ]
+    },
+    {
+      path:'dashboard',
+      element:<Dashboard></Dashboard>,
+      children:[
+        {
+          path:'mycart',
+          element:<PrivateRoute><MyCart></MyCart></PrivateRoute>
         }
       ]
     },
