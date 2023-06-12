@@ -16,7 +16,7 @@ const AllClasses = () => {
   const handleAddToCart = (item) => {
     const cartItem = { cartId: item._id, name: item.language, price: item.price, img: item.image, email: user?.email }
     if (user && user?.email) {
-      fetch('http://localhost:5000/carts', {
+      fetch('https://summer-camp-school-server-one.vercel.app/carts', {
         method: 'POST',
         headers: {
           'content-type': 'application/json'
