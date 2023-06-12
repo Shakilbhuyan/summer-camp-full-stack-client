@@ -5,6 +5,7 @@ import Error from "../Components/Error/Error";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import AllClasses from "../pages/AllClasses/AllClasses";
+import AllInstructors from "../pages/AllInstructors/AllInstructors";
 
 export const router = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
         {
           path:'/allclasses',
           element:<AllClasses></AllClasses>
+        },
+        {
+          path:"/allinstructors",
+          element:<AllInstructors></AllInstructors>
         }
       ]
     },

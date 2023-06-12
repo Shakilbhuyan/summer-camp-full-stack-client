@@ -13,7 +13,7 @@ const NavBer = () => {
 
   const listOptions = <>
     <li><Link to="/">Home</Link></li>
-    <li><Link to="/">Instructors</Link></li>
+    <li><Link to="/allinstructors">Instructors</Link></li>
     <li><Link to="/allclasses">Classes</Link></li>
     {
       user ? <div className='flex items-center gap-2'>
