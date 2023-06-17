@@ -5,7 +5,7 @@ import { AuthContext } from '../../../Providers/AuthProvider';
 import { useState } from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useEffect } from 'react';
-import './CheckoutForm.css' 
+
 
 const CheckoutForm = ({cart, price}) => {
     const stripe = useStripe();
