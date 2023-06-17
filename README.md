@@ -1,7 +1,7 @@
-###
+###About
 This is a Learnning Language  website
 
-###
+###Uses package
 In this website uses these packge
 *React
 *Axios
@@ -9,5 +9,5 @@ In this website uses these packge
 *TanStack Qurey
 *React Icon etc
 
-###
-Live site:  https://summer-camp-school-f8578.web.app
+###site
+Live site:  https://summer-camp-school-f8578.web.app/
